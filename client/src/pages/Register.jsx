@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 export default function Register() {
   const [form, Setform] = useState({
@@ -31,15 +33,15 @@ export default function Register() {
         },
       });
       console.log(data);
-      Swal.fire("Successfully Registered!");
       navigate("/login");
+      Swal.fire("Successfully Registered!");
     } catch (error) {
+      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: error.response.data.message,
       });
-      console.log(error);
     }
   };
   return (
@@ -59,7 +61,7 @@ export default function Register() {
                 <div className="flex justify-between">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
                 </div>
-                <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password" name="password" onChange={handleSubmit} />
+                <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password" name="password" onChange={handleChange} />
               </div>
               <div className="mt-8">
                 <button type="submit" className="bg-teal-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-teal-900">

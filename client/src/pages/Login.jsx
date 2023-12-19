@@ -68,10 +68,10 @@ export default function Login() {
             <img src="./logo.png" className="my-10 mx-auto" />
             <p className="text-xl text-gray-600 text-center">Welcome back!</p>
             <div className="mt-4 flex items-center justify-between"></div>
-            <form onChange={handleChange}>
+            <form onSubmit={handleSubmit}>
               <div className="mt-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-                <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" name="email" />
+                <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" name="email" onChange={handleChange} />
               </div>
               <div className="mt-4">
                 <div className="flex justify-between">
@@ -80,10 +80,10 @@ export default function Login() {
                     Forget Password?
                   </a>
                 </div>
-                <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password" name="password" />
+                <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password" name="password" onChange={handleChange} />
               </div>
               <div className="mt-8">
-                <button onSubmit={handleSubmit} type="submit" className="bg-teal-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-teal-900">
+                <button type="submit" className="bg-teal-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-teal-900">
                   Login
                 </button>
               </div>
