@@ -18,7 +18,7 @@ export default function Card() {
         </div>
         <div className="p-6 pt-0">
           <button
-            className="block w-full select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            className="w-full px-6 py-3 text-center uppercase font-sans text-xs font-bold text-blue-gray-900 bg-blue-gray-100 border border-blue-gray-900 rounded-lg transition-all hover:scale-105 hover:bg-teal-900 hover:text-white focus:scale-105 focus:outline-none focus:ring focus:border-blue-500 active:scale-100 active:bg-blue-gray-200 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
             type="button"
           >
             Add to Cart
