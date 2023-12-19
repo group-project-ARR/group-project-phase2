@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,6 +25,14 @@ const Navbar = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    localStorage.clear();
+    Swal.fire("Successfully Log Out!");
+    navigate("/login");
+  };
+
   return (
     <nav className={`flex flex-wrap items-center justify-between p-3 bg-white-200 shadow-md ${isScrolled ? "fixed top-0 w-full bg-white z-50" : ""}`}>
       <img src="./logo.png" className="mx-2" alt="ACME" width="150" />
@@ -43,7 +53,7 @@ const Navbar = () => {
           Selling
         </a>
       </div>
-      <a href="#" className={`toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right border border-teal-900 text-teal-900 hover:text-white hover:bg-teal-900 md:rounded`}>
+      <a onClick={logoutHandler} href="#" className={`toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right border border-teal-900 text-teal-900 hover:text-white hover:bg-teal-900 md:rounded`}>
         Log out
       </a>
     </nav>
