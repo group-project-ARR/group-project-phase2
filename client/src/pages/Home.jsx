@@ -1,6 +1,47 @@
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function Home() {
+  const [posts, setPosts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const fetchData = async () => {
+    try {
+      let url;
+      if (searchTerm) {
+        url = `http://localhost:3000/posts/?search=${searchTerm}`;
+      } else {
+        url = `http://localhost:3000/posts`;
+      }
+      const { data } = await axios({
+        method: "get",
+        url,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
+      console.log(data);
+      setPosts(data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Opps!",
+        text: error.response.data.message,
+      });
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [searchTerm]);
+
+  const handleChangeSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <>
       {/* <!-- Hero Section --> */}
@@ -30,8 +71,20 @@ export default function Home() {
             </div>
             <div className="flex w-11/12 md:w-8/12 xl:w-6/12">
               <div className="flex rounded-md w-full">
-                <input type="text" name="q" className="w-full p-3 rounded-md rounded-r-none border border-2 border-gray-300 placeholder-current dark:bg-gray-500 dark:text-gray-300 dark:border-none" placeholder="keyword" />
-                <button className="inline-flex items-center gap-2 bg-teal-700 text-white text-lg font-semibold py-3 px-6 rounded-r-md">
+                <input
+                  type="text"
+                  name="q"
+                  className="w-full p-3 rounded-md rounded-r-none border border-2 border-gray-300 placeholder-current dark:bg-gray-500 dark:text-gray-300 dark:border-none"
+                  placeholder="keyword"
+                  onChange={handleChangeSearch}
+                />
+                <button
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    fetchData();
+                  }}
+                  className="inline-flex items-center gap-2 bg-teal-700 text-white text-lg font-semibold py-3 px-6 rounded-r-md"
+                >
                   <span>Find</span>
                   <svg
                     className="text-gray-200 h-5 w-5 p-0 fill-current"
@@ -53,14 +106,10 @@ export default function Home() {
         </div>
       </div>
       <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-20 md:grid-cols-2 gap-10 lg:grid-cols-2 xl:grid-cols-4 gap-6">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {posts &&
+          posts.map((post) => {
+            return <Card key={post.id} posts={post} />;
+          })}
       </div>
     </>
   );
