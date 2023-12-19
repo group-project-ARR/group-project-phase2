@@ -1,0 +1,47 @@
+[
+  {
+    "name": "iPhone 15 Pro Max",
+    "price": "28000000",
+    "location": "DKI Jakarta",
+    "condition": "Good",
+    "imageUrl": "https://media.karousell.com/media/photos/products/2023/12/2/iphone_15_pro_max_256gb_second_1701502967_750c1eba_progressive.jpg",
+    "CategoryId": 1,
+    "UserId": 1
+  },
+  {
+    "name": "Samsung Z Fold 5",
+    "price": "25000000",
+    "location": "Bandung",
+    "condition": "Good",
+    "imageUrl": "https://media.karousell.com/media/photos/products/2023/8/25/samsung_z_fold_5_5g_12gb_512gb_1692955030_d97280f7_progressive",
+    "CategoryId": 1,
+    "UserId": 1
+  },
+  {
+    "name": "MSI GF63",
+    "price": "18000000",
+    "location": "Surabaya",
+    "condition": "Good",
+    "imageUrl": "https://media.karousell.com/media/photos/products/2023/7/13/msi_gf63_thin_gaming_laptop_1689250604_ded846a0.jpg",
+    "CategoryId": 2,
+    "UserId": 1
+  },
+  {
+    "name": "iPad Pro 10.5 inch",
+    "price": "11000000",
+    "location": "DKI Jakarta",
+    "condition": "Good",
+    "imageUrl": "https://images.tokopedia.net/img/cache/700/VqbcmM/2022/7/24/5bae28e1-bed2-419d-9a40-debf9a7756f6.jpg",
+    "CategoryId": 3,
+    "UserId": 1
+  },
+  {
+    "name": "Macbook Pro M2",
+    "price": "28000000",
+    "location": "DKI Jakarta",
+    "condition": "Good",
+    "imageUrl": "https://images.tokopedia.net/img/cache/700/VqbcmM/2023/9/25/9f7f0126-b88b-4ed2-8a2e-8e78850adf81.jpg",
+    "CategoryId": 2,
+    "UserId": 1
+  }
+]
