@@ -4,29 +4,29 @@ export default function Home() {
   return (
     <>
       {/* <!-- Hero Section --> */}
-      <section className="bg-teal-600 text-white py-20 px-4">
+      <section className="bg-teal-900 text-white py-20 px-4">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-          <div className="md:w-1/2 mb-10 md:mb-0">
-            <h2 className="text-4xl font-bold leading-tight mb-4">Welcome to Our Site</h2>
-            <p className="text-xl mb-4">We offer a range of services to help you achieve your goals.</p>
-            <button className="bg-white text-teal-600 font-bold py-3 px-6 rounded hover:bg-teal-900 hover:text-white">Get Started</button>
+          <div className="md:w-1/2 mb-10 md:mb-10">
+            <h1 className="text-6xl font-bold leading-tight mb-4">Your Needs Solution.</h1>
+            <p className="text-xl mb-4">We offer reasonable price with quality of 5 starts to help you achieve your goals.</p>
+            <button className="bg-white text-teal-600 font-bold py-3 px-6 rounded hover:bg-teal-600 hover:text-white">Get Started</button>
           </div>
           <div className="md:w-1/2">
-            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713" alt="Hero Image" class="w-full rounded-xl" />
+            <img src="https://images.unsplash.com/photo-1556740714-a8395b3bf30f?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hero Image" className="w-full rounded-xl" />
           </div>
         </div>
       </section>
       {/* Headers */}
-      <div className="dark:bg-gray-800">
+      <div className="bg-white-200">
         <div className="dark:bg-transparent">
           <div className="mx-auto flex flex-col items-center py-12 sm:py-24">
             <div className="w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10">
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl text-center text-gray-800 dark:text-white font-black leading-10">
-                Let's not stress for
-                <span className="text-violet-800 dark:text-violet-500">Website</span>
-                designs.
+              <h1 className="text-2xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl text-center text-gray-800 font-black leading-10">
+                Need some products? <br />
+                Here's the
+                <span className="text-teal-700"> Solution</span>
               </h1>
-              <p className="mt-5 sm:mt-10 lg:w-10/12 text-gray-600 dark:text-gray-300 font-normal text-center text-xl">A Community build tailwind component library.</p>
+              <p className="mt-5 sm:mt-10 lg:w-10/12 text-gray-500 font-normal text-center text-xl">We're only selling the best quality pre-owned products</p>
             </div>
             <div className="flex w-11/12 md:w-8/12 xl:w-6/12">
               <div className="flex rounded-md w-full">
@@ -52,7 +52,11 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-20 md:grid-cols-2 gap-10 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-20 md:grid-cols-2 gap-10 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
         <Card />
         <Card />
         <Card />
