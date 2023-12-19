@@ -11,8 +11,17 @@ class PostController {
     }
 
     static async getPosts(req, res, next) {
+        const { search } = req.query
+        const queryParams = {
+            where: {}
+        }
+        if (search) {
+            queryParams.where.name = {
+                [Op.iLike]: `%${search}%`
+            }
+        }
         try {
-            const posts = await Post.findAll()
+            const posts = await Post.findAll(queryParams)
             res.status(200).json(posts)
         } catch (error) {
             next(error)
