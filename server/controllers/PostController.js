@@ -1,4 +1,5 @@
-const {Post} = require(`../models`)
+const { Op } = require("sequelize")
+const { Post, Category, User } = require(`../models`)
 class PostController {
     static async createPost(req, res, next) {
         try {
@@ -11,32 +12,39 @@ class PostController {
     }
 
     static async getPosts(req, res, next) {
-        const { search } = req.query
+        const { search } = req.query;
         const queryParams = {
-            where: {}
-        }
+            where: {},
+            include: [Category, User]
+        };
+
         if (search) {
             queryParams.where.name = {
                 [Op.iLike]: `%${search}%`
-            }
+            };
         }
+
         try {
-            const posts = await Post.findAll(queryParams)
-            res.status(200).json(posts)
+            const posts = await Post.findAll(queryParams);
+            res.status(200).json(posts);
         } catch (error) {
-            next(error)
+            next(error);
         }
     }
 
     static async getPost(req, res, next) {
         try {
-            const post = await Post.findByPk(req.params.id)
+            const post = await Post.findByPk(req.params.id, {
+                include: [Category, User]
+            });
+
             if (!post) {
-                throw ({ name: `PostNotFound` })
+                throw { name: 'PostNotFound' };
             }
-            res.status(200).json(post)
+
+            res.status(200).json(post);
         } catch (error) {
-            next(error)
+            next(error);
         }
     }
 
