@@ -13,7 +13,7 @@ export default function Detail() {
     try {
       const { data } = await axios({
         method: "get",
-        url: `http://localhost:3000/posts/` + params.id,
+        url: `http://localhost:3000/sell/` + params.id,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -38,7 +38,7 @@ export default function Detail() {
           <div className="flex flex-col md:flex-row -mx-4">
             <div className="md:flex-1 px-4">
               <div className="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
-                <img className="w-full h-full object-cover" src={post.imageUrl} alt="Product Image" />
+                <img className="w-full h-full object-cover" src={post[0]?.imageUrl} alt="Product Image" />
               </div>
               <div className="flex -mx-2 mb-4">
                 <div className="w-1/2 px-2">
@@ -52,25 +52,25 @@ export default function Detail() {
               </div>
             </div>
             <div className="md:flex-1 px-4">
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">{post.name}</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">{post[0]?.name}</h2>
 
-              <span className="bg-gray-300 text-gray-700 py-1 px-2 rounded-full font-medium"> {post.Category?.name}</span>
-              <p className="text-teal-700 font-bold text-sm mt-4"> {post.location}</p>
+              <span className="bg-gray-300 text-gray-700 py-1 px-2 rounded-full font-medium"> {post[0]?.Category?.name}</span>
+              <p className="text-teal-700 font-bold text-sm mt-4"> {post[0]?.location}</p>
               <p className="text-gray-600 text-sm mb-4 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed ante justo. Integer euismod libero id mauris malesuada tincidunt.</p>
               <div className="flex mb-4">
                 <div className="mr-4">
                   <span className="font-bold text-gray-700">Price:</span>
-                  <span className="text-gray-600"> IDR {post.price}</span>
+                  <span className="text-gray-600"> IDR {post[0]?.price}</span>
                 </div>
                 <div>
                   <span className="font-bold text-gray-700">Condition:</span>
-                  <span className="text-gray-600"> {post.condition}</span>
+                  <span className="text-gray-600"> {post[0]?.condition}</span>
                 </div>
               </div>
               <div className="mb-4">
                 <span className="font-bold text-gray-700">Seller Information:</span>
                 <div className="flex items-center mt-2 mb-4">
-                  <p className="text-teal-700 font-bold text-sm">{post.User?.email}</p>
+                  <p className="text-teal-700 font-bold text-sm">{post[0]?.User?.email}</p>
                 </div>
                 <span className="font-bold text-gray-700">Product Description:</span>
                 <p className="text-gray-600 text-sm mt-2">

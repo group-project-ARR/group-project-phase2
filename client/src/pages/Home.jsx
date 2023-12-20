@@ -12,9 +12,9 @@ export default function Home() {
     try {
       let url;
       if (searchTerm) {
-        url = `http://localhost:3000/posts/?search=${searchTerm}`;
+        url = `http://localhost:3000/sell/?search=${searchTerm}`;
       } else {
-        url = `http://localhost:3000/posts`;
+        url = `http://localhost:3000/sell`;
       }
       const { data } = await axios({
         method: "get",

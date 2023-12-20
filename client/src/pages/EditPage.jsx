@@ -85,7 +85,7 @@ export default function EditPage() {
   };
 
   const handleDiscard = () => {
-    navigate("/");
+    navigate("/myposts");
   };
 
   const handleSubmitForm = async (e) => {
@@ -105,7 +105,7 @@ export default function EditPage() {
         title: "Good Job!",
         text: "Succesfully Update the Product",
       });
-      navigate("/");
+      navigate("/myposts");
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -115,6 +115,7 @@ export default function EditPage() {
       });
     }
   };
+
   return (
     <>
       <div className="bg-white border border-4 rounded-lg shadow relative m-10">

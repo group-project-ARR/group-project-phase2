@@ -17,7 +17,7 @@ class PostController {
             where: {
                 UserId: {
                     [Op.ne]: req.user.id
-                  }
+                }
             },
             include: [Category, User]
         };
@@ -39,15 +39,17 @@ class PostController {
         try {
             const post = await Post.findAll({
                 where: {
-                  UserId: {
-                    [Op.ne]: req.user.id
-                  },
-                  id: req.params.id
-                }
-              })
-            res.status(200).json(post)
+                    UserId: {
+                        [Op.ne]: req.user.id
+                    },
+                    id: req.params.id
+                },
+                include: [Category, User]
+            });
+
+            res.status(200).json(post);
         } catch (error) {
-            next(error)
+            next(error);
         }
     }
 

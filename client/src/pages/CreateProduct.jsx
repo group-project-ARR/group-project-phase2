@@ -48,7 +48,7 @@ export default function CreateProduct() {
   };
 
   const handleDiscard = () => {
-    navigate("/");
+    navigate("/myposts");
   };
 
   const handleSubmitForm = async (e) => {
@@ -68,7 +68,7 @@ export default function CreateProduct() {
         title: "Good Job!",
         text: "Succesfully Add the Product",
       });
-      navigate("/");
+      navigate("/myposts");
     } catch (error) {
       console.log(error);
       Swal.fire({
