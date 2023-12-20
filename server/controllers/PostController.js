@@ -12,14 +12,23 @@ class PostController {
     }
 
     static async getSellingProduct(req, res, next) {
-        try {
-            const post = await Post.findAll({
-                where: {
-                  UserId: {
+        const { search } = req.query;
+        const queryParams = {
+            where: {
+                UserId: {
                     [Op.ne]: req.user.id
                   }
-                }
-              })
+            },
+            include: [Category, User]
+        };
+
+        if (search) {
+            queryParams.where.name = {
+                [Op.iLike]: `%${search}%`
+            };
+        }
+        try {
+            const post = await Post.findAll(queryParams)
             res.status(200).json(post)
         } catch (error) {
             next(error)
