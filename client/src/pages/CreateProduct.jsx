@@ -1,4 +1,79 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 export default function CreateProduct() {
+  const navigate = useNavigate();
+
+  const [categories, setCategories] = useState([]);
+
+  const fetchDataCategories = async () => {
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `http://localhost:3000/categories`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
+      console.log(data);
+      setCategories(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataCategories();
+  }, []);
+
+  const [inputForm, setInputForm] = useState({
+    name: "",
+    price: "",
+    location: "",
+    condition: "",
+    imageUrl: "",
+    CategoryId: "",
+    UserId: localStorage.getItem("id"),
+  });
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    setInputForm({
+      ...inputForm,
+      [name]: value,
+    });
+  };
+
+  const handleSubmitForm = async (e) => {
+    try {
+      e.preventDefault();
+      const { data } = await axios({
+        method: "post",
+        url: `http://localhost:3000/posts`,
+        data: inputForm,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
+      console.log(data);
+      Swal.fire({
+        icon: "success",
+        title: "Good Job!",
+        text: "Succesfully Add the Product",
+      });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response.data.message,
+      });
+    }
+  };
   return (
     <>
       <div className="bg-white border border-4 rounded-lg shadow relative m-10">
@@ -16,16 +91,17 @@ export default function CreateProduct() {
         </div>
 
         <div className="p-6 space-y-6">
-          <form action="#">
+          <form onSubmit={handleSubmitForm}>
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="product-name" className="text-sm font-medium text-gray-900 block mb-2">
                   Product Name
                 </label>
                 <input
+                  onChange={handleChangeInput}
                   type="text"
-                  name="product-name"
-                  id="product-name"
+                  name="name"
+                  id="name"
                   className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                   placeholder="Apple Imac 27”"
                   required
@@ -35,20 +111,32 @@ export default function CreateProduct() {
                 <label htmlFor="category" className="text-sm font-medium text-gray-900 block mb-2">
                   Category
                 </label>
-                <input
+                <select
+                  onChange={handleChangeInput}
                   type="text"
-                  name="category"
-                  id="category"
+                  name="CategoryId"
+                  id="CategoryId"
                   className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                   placeholder="Electronics"
                   required
-                />
+                >
+                  <option selected>--select category--</option>
+                  {categories &&
+                    categories.map((categories) => {
+                      return (
+                        <option key={categories.id} value={categories.id}>
+                          {categories.name}
+                        </option>
+                      );
+                    })}
+                </select>
               </div>
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="location" className="text-sm font-medium text-gray-900 block mb-2">
                   Location
                 </label>
                 <input
+                  onChange={handleChangeInput}
                   type="text"
                   name="location"
                   id="location"
@@ -62,6 +150,7 @@ export default function CreateProduct() {
                   Price
                 </label>
                 <input
+                  onChange={handleChangeInput}
                   type="number"
                   name="price"
                   id="price"
@@ -75,6 +164,7 @@ export default function CreateProduct() {
                   Condition
                 </label>
                 <input
+                  onChange={handleChangeInput}
                   type="text"
                   name="condition"
                   id="condition"
@@ -88,6 +178,7 @@ export default function CreateProduct() {
                   Image Url
                 </label>
                 <input
+                  onChange={handleChangeInput}
                   type="text"
                   name="imageUrl"
                   id="imageUrl"
@@ -102,18 +193,18 @@ export default function CreateProduct() {
                 </label>
                 <textarea id="product-details" rows="6" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Details"></textarea>
               </div>
+            </div>{" "}
+            <div className="p-6 border-t border-gray-200 rounded-b">
+              <button className="text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:ring-teal-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-2" type="submit">
+                Create
+              </button>
             </div>
           </form>
         </div>
 
-        <div className="p-6 border-t border-gray-200 rounded-b">
-          <button className="text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:ring-teal-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-2" type="submit">
-            Create
-          </button>
-          <button className="text-white bg-slate-500 hover:bg-slate-700 focus:ring-4 focus:ring-slate-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="discard">
-            Discard
-          </button>
-        </div>
+        <button className="text-white bg-slate-500 hover:bg-slate-700 focus:ring-4 focus:ring-slate-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="discard">
+          Discard
+        </button>
       </div>
     </>
   );

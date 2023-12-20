@@ -48,7 +48,7 @@ export default function Detail() {
             <div className="md:flex-1 px-4">
               <h2 className="text-2xl font-bold text-gray-800 mb-2">{post.name}</h2>
 
-              <span className="bg-gray-300 text-gray-700 py-1 px-2 rounded-full font-medium"> {post.name}</span>
+              <span className="bg-gray-300 text-gray-700 py-1 px-2 rounded-full font-medium"> {post.Category?.name}</span>
               <p className="text-teal-700 font-bold text-sm mt-4"> {post.location}</p>
               <p className="text-gray-600 text-sm mb-4 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed ante justo. Integer euismod libero id mauris malesuada tincidunt.</p>
               <div className="flex mb-4">
@@ -64,7 +64,7 @@ export default function Detail() {
               <div className="mb-4">
                 <span className="font-bold text-gray-700">Seller Information:</span>
                 <div className="flex items-center mt-2 mb-4">
-                  <p className="text-teal-700 font-bold text-sm">EMAIL SELLER</p>
+                  <p className="text-teal-700 font-bold text-sm">{post.User?.email}</p>
                 </div>
                 <span className="font-bold text-gray-700">Product Description:</span>
                 <p className="text-gray-600 text-sm mt-2">
