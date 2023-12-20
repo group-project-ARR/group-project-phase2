@@ -12,14 +12,23 @@ class PostController {
     }
 
     static async getSellingProduct(req, res, next) {
+        const { search } = req.query;
+        const queryParams = {
+            where: {
+                UserId: {
+                    [Op.ne]: req.user.id
+                  }
+            },
+            include: [Category, User]
+        };
+
+        if (search) {
+            queryParams.where.name = {
+                [Op.iLike]: `%${search}%`
+            };
+        }
         try {
-            const post = await Post.findAll({
-                where: {
-                    UserId: {
-                        [Op.ne]: req.user.id
-                    }
-                }
-            })
+            const post = await Post.findAll(queryParams)
             res.status(200).json(post)
         } catch (error) {
             next(error)
@@ -30,12 +39,12 @@ class PostController {
         try {
             const post = await Post.findAll({
                 where: {
-                    UserId: {
-                        [Op.ne]: req.user.id
-                    }
+                  UserId: {
+                    [Op.ne]: req.user.id
+                  }
                 }
-            })
-            const detailSelling = await post.findByPk(req.params.id)
+              })
+              const detailSelling = await post.findByPk(req.params.id)
             res.status(200).json(detailSelling)
         } catch (error) {
             next(error)
