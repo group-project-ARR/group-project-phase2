@@ -16,6 +16,8 @@ router.post(`/posts`, PostController.createPost)
 router.get(`/posts`, PostController.getPosts)
 router.get(`/posts/:id`, PostController.getPost)
 
+router.get(`/myposts`, PostController.getPostsByUserId)
+
 router.put(`/posts/:id`, authorization, PostController.editPost)
 router.delete(`/posts/:id`, authorization, PostController.destroyPost)
 

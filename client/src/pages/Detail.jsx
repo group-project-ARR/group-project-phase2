@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Detail() {
   const params = useParams();
+  const navigate = useNavigate();
   //   console.log(params);
   const [post, setPost] = useState({});
   console.log(post);
@@ -27,6 +28,9 @@ export default function Detail() {
     fetchPostById();
   }, []);
 
+  const handleChat = () => {
+    navigate("/chats");
+  };
   return (
     <>
       <div className="bg-gray-100 py-8">
@@ -41,7 +45,9 @@ export default function Detail() {
                   <button className="w-full bg-teal-700 text-white py-2 px-4 rounded-full font-bold hover:bg-teal-900">Buy Now</button>
                 </div>
                 <div className="w-1/2 px-2">
-                  <button className="w-full bg-teal-100 text-gray-800 py-2 px-4 rounded-full font-bold hover:bg-teal-400">Chat Seller</button>
+                  <button onClick={handleChat} className="w-full bg-teal-100 text-gray-800 py-2 px-4 rounded-full font-bold hover:bg-teal-400">
+                    Chat Seller
+                  </button>
                 </div>
               </div>
             </div>

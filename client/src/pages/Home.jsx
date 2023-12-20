@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -49,8 +50,10 @@ export default function Home() {
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="md:w-1/2 mb-10 md:mb-10">
             <h1 className="text-6xl font-bold leading-tight mb-4">Your Needs Solution.</h1>
-            <p className="text-xl mb-4">We offer reasonable price with quality of 5 starts to help you achieve your goals.</p>
-            <button className="bg-white text-teal-600 font-bold py-3 px-6 rounded hover:bg-teal-600 hover:text-white">Get Started</button>
+            <p className="text-xl mb-6">We offer reasonable price with best quality to help you achieve your needs.</p>
+            <Link to={"/create"} className="bg-white text-teal-600 font-bold py-3 px-6 rounded hover:bg-teal-600 hover:text-white">
+              Start Selling
+            </Link>
           </div>
           <div className="md:w-1/2">
             <img src="https://images.unsplash.com/photo-1556740714-a8395b3bf30f?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hero Image" className="w-full rounded-xl" />
