@@ -30,7 +30,7 @@ class UserController {
                 throw ({ name: `UserNotFound` })
             }
             const access_token = signToken({ id: user.id })
-            res.status(200).json({ access_token })
+            res.status(200).json({ access_token, "username": user.username })
         } catch (error) {
             next(error)
         }
