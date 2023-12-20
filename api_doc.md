@@ -81,6 +81,10 @@ OR
 {
   "message": "Password is Required"
 }
+OR
+{
+  "message": "Email Must be Email Format"
+}
 ```
 
 ## 2. POST /login
@@ -177,7 +181,7 @@ Response (200 - OK)
 ]
 ```
 
-## 4. POST /posts/:id
+## 4. GET /posts/:id
 
 Add new posts
 
@@ -213,6 +217,34 @@ Response (201 - Created)
 }
 ```
 
+Response (400 - Bad Request)
+
+```json
+{
+  "message": "Name is Required"
+}
+OR
+{
+  "message": "Price is Required"
+}
+OR
+{
+  "message": "Location is Required"
+}
+OR
+{
+  "message": "Condition is Required"
+}
+OR
+{
+  "message": "CategoryId is Required"
+}
+OR
+{
+  "message": "UserId is Required"
+}
+```
+
 Response (404 - Not Found)
 
 ```json
@@ -221,7 +253,44 @@ Response (404 - Not Found)
 }
 ```
 
-## 5. GET /myposts
+## 5. GET /sell
+
+Sell Post
+
+Response (200 - OK)
+
+```json
+[
+  {
+    "id": 8,
+    "name": "Samsung Galaxy Z Flip 5 5g 256gb Second Lengkap Garansi Panjang",
+    "price": 12600000,
+    "location": "Yogyakarta",
+    "condition": "Good",
+    "imageUrl": "https://images.tokopedia.net/img/cache/700/VqbcmM/2023/10/25/5aa421b5-d6bd-4f9e-adea-9bd9512899c0.jpg",
+    "CategoryId": 1,
+    "UserId": 2,
+    "createdAt": "2023-12-20T06:58:07.875Z",
+    "updatedAt": "2023-12-20T06:58:07.875Z",
+    "Category": {
+      "id": 1,
+      "name": "Handphone",
+      "createdAt": "2023-12-19T17:55:15.448Z",
+      "updatedAt": "2023-12-19T17:55:15.448Z"
+    },
+    "User": {
+      "id": 2,
+      "username": null,
+      "email": "admin2@mail.com",
+      "password": "$2b$10$.M7wpfI3W8KOLUPh1tcZ6uLBUeCIi1TCBNg4k0gj6npdFevYE5UBO",
+      "createdAt": "2023-12-20T06:14:12.151Z",
+      "updatedAt": "2023-12-20T06:14:12.151Z"
+    }
+  }
+]
+```
+
+## 6. GET /myposts
 
 Get current user favourites
 
@@ -252,9 +321,9 @@ Response (200 - OK)
 ]
 ```
 
-## 6. PUT /posts/:id
+## 7. PUT /posts/:id
 
-- Update posts 
+- Update posts
 
 Request:
 
@@ -278,14 +347,14 @@ Request:
 
 ```json
 {
-    "name": "iPhone 15 Pro Max",
-    "price": "28000000",
-    "location": "DKI Jakarta",
-    "condition": "Good",
-    "imageUrl": "https://media.karousell.com/media/photos/products/2023/12/2/iphone_15_pro_max_256gb_second_1701502967_750c1eba_progressive.jpg",
-    "CategoryId": 1,
-    "UserId": 1
-  }
+  "name": "iPhone 15 Pro Max",
+  "price": "28000000",
+  "location": "DKI Jakarta",
+  "condition": "Good",
+  "imageUrl": "https://media.karousell.com/media/photos/products/2023/12/2/iphone_15_pro_max_256gb_second_1701502967_750c1eba_progressive.jpg",
+  "CategoryId": 1,
+  "UserId": 1
+}
 ```
 
 Response (200 - OK)
@@ -302,6 +371,33 @@ Response (404 - Not Found)
 {
   "message": "Post not found"
 }
+```
+
+## 8. GET /categories
+
+Response (200 - OK)
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Handphone",
+    "createdAt": "2023-12-19T17:06:10.451Z",
+    "updatedAt": "2023-12-19T17:06:10.451Z"
+  },
+  {
+    "id": 2,
+    "name": "Laptop",
+    "createdAt": "2023-12-19T17:06:10.451Z",
+    "updatedAt": "2023-12-19T17:06:10.451Z"
+  },
+  {
+    "id": 3,
+    "name": "Tablet",
+    "createdAt": "2023-12-19T17:06:10.451Z",
+    "updatedAt": "2023-12-19T17:06:10.451Z"
+  }
+]
 ```
 
 ## Global Error
