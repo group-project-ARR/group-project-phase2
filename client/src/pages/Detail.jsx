@@ -70,7 +70,7 @@ export default function Detail() {
               <div className="mb-4">
                 <span className="font-bold text-gray-700">Seller Information:</span>
                 <div className="flex items-center mt-2 mb-4">
-                  <p className="text-teal-700 font-bold text-sm">{post[0]?.User?.email}</p>
+                  <p className="text-teal-700 font-bold text-sm">{post[0]?.User?.username}</p>
                 </div>
                 <span className="font-bold text-gray-700">Product Description:</span>
                 <p className="text-gray-600 text-sm mt-2">

@@ -4,7 +4,8 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 export default function Register() {
-  const [form, Setform] = useState({
+  const [form, setForm] = useState({
+    username: "", 
     email: "",
     password: "",
   });
@@ -13,9 +14,8 @@ export default function Register() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
 
-    Setform({
+    setForm({
       ...form,
       [name]: value,
     });
@@ -32,6 +32,7 @@ export default function Register() {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
       });
+
       console.log(data);
       navigate("/login");
       Swal.fire("Successfully Registered!");
@@ -44,6 +45,7 @@ export default function Register() {
       });
     }
   };
+
   return (
     <>
       <div className="py-16">
@@ -53,6 +55,10 @@ export default function Register() {
             <img src="./logo.png" className="my-10 mx-auto" />
             <p className="text-xl text-gray-600 text-center">Register Here!</p>
             <form onSubmit={handleSubmit}>
+              <div className="mt-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="text" name="username" onChange={handleChange} />
+              </div>
               <div className="mt-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
                 <input className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" name="email" onChange={handleChange} />
