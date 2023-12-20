@@ -16,8 +16,8 @@ router.post(`/posts`, PostController.createPost)
 router.get(`/posts`, PostController.getPosts)
 router.get(`/posts/:id`, PostController.getPost)
 
-router.get(`/posts/sell`, PostController.getSellingProduct)
-router.get(`/posts/sell/:id`, PostController.getSellingProductById)
+router.get(`/sell`, PostController.getSellingProduct)
+router.get(`/sell/:id`, PostController.getSellingProductById)
 
 router.get(`/myposts`, PostController.getPostsByUserId)
 

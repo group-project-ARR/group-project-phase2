@@ -28,8 +28,8 @@ class PostController {
             };
         }
         try {
-            const post = await Post.findAll(queryParams)
-            res.status(200).json(post)
+            const data = await Post.findAll(queryParams)
+            res.status(200).json(data)
         } catch (error) {
             next(error)
         }
@@ -41,11 +41,11 @@ class PostController {
                 where: {
                   UserId: {
                     [Op.ne]: req.user.id
-                  }
+                  },
+                  id: req.params.id
                 }
               })
-              const detailSelling = await post.findByPk(req.params.id)
-            res.status(200).json(detailSelling)
+            res.status(200).json(post)
         } catch (error) {
             next(error)
         }
