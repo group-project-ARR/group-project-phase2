@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-export default function MyProductCard({ posts }) {
+export default function MyProductCard({ posts, deletePost }) {
   const navigate = useNavigate();
 
-  const seeMoreHandler = () => {
+  const updateHandler = () => {
     navigate(`/myposts/${posts.id}`);
   };
   return (
@@ -25,14 +25,14 @@ export default function MyProductCard({ posts }) {
         </div>
         <div className="p-6 pt-0">
           <button
-            onClick={seeMoreHandler}
+            onClick={updateHandler}
             className="w-35 px-6 py-3 mr-2 text-center uppercase font-sans text-xs font-bold text-blue-gray-900 bg-teal-100 rounded-lg transition-all hover:scale-105 hover:bg-teal-900 hover:text-white focus:scale-105 focus:outline-none focus:ring focus:border-blue-500 active:scale-100 active:bg-blue-gray-200 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
             type="button"
           >
             Update
           </button>
           <button
-            onClick={seeMoreHandler}
+            onClick={() => deletePost(posts.id)}
             className="w-35 px-6 py-3 text-center uppercase font-sans text-xs font-bold text-blue-gray-900 bg-red-100 rounded-lg transition-all hover:scale-105 hover:bg-red-900 hover:text-white focus:scale-105 focus:outline-none focus:ring focus:border-blue-500 active:scale-100 active:bg-blue-gray-200 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
             type="button"
           >

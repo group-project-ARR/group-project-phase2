@@ -40,12 +40,16 @@ export default function EditPage() {
     UserId: localStorage.getItem("id"),
   });
 
+  useEffect(() => {
+    fetchData();
+  }, [params.id]);
+
   const fetchData = async () => {
     try {
       console.log("masuk");
       const { data } = await axios({
         method: "get",
-        url: `http://localhost:3000/posts` + params.id,
+        url: `http://localhost:3000/posts/` + params.id,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -54,9 +58,9 @@ export default function EditPage() {
       setInputForm(() => {
         return {
           name: data.name,
-          description: data.description,
           price: data.price,
-          stock: data.stock,
+          location: data.location,
+          condition: data.condition,
           imageUrl: data.imageUrl,
           categoryId: data.categoryId,
         };
@@ -88,8 +92,8 @@ export default function EditPage() {
     try {
       e.preventDefault();
       const { data } = await axios({
-        method: "post",
-        url: `http://localhost:3000/posts`,
+        method: "put",
+        url: `http://localhost:3000/posts/` + params.id,
         data: inputForm,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -99,7 +103,7 @@ export default function EditPage() {
       Swal.fire({
         icon: "success",
         title: "Good Job!",
-        text: "Succesfully Add the Product",
+        text: "Succesfully Update the Product",
       });
       navigate("/");
     } catch (error) {
@@ -136,6 +140,7 @@ export default function EditPage() {
                 </label>
                 <input
                   onChange={handleChangeInput}
+                  value={inputForm.name}
                   type="text"
                   name="name"
                   id="name"
@@ -173,6 +178,7 @@ export default function EditPage() {
                   Location
                 </label>
                 <input
+                  value={inputForm.location}
                   onChange={handleChangeInput}
                   type="text"
                   name="location"
@@ -187,6 +193,7 @@ export default function EditPage() {
                   Price
                 </label>
                 <input
+                  value={inputForm.price}
                   onChange={handleChangeInput}
                   type="number"
                   name="price"
@@ -201,6 +208,7 @@ export default function EditPage() {
                   Condition
                 </label>
                 <input
+                  value={inputForm.condition}
                   onChange={handleChangeInput}
                   type="text"
                   name="condition"
@@ -215,6 +223,7 @@ export default function EditPage() {
                   Image Url
                 </label>
                 <input
+                  value={inputForm.imageUrl}
                   onChange={handleChangeInput}
                   type="text"
                   name="imageUrl"
@@ -233,7 +242,7 @@ export default function EditPage() {
             </div>{" "}
             <div className="p-6 border-t border-gray-200 rounded-b">
               <button className="text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:ring-teal-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-2" type="submit">
-                Create
+                Update
               </button>
               <button className="text-white bg-slate-500 hover:bg-slate-700 focus:ring-4 focus:ring-slate-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button" onClick={handleDiscard}>
                 Discard
