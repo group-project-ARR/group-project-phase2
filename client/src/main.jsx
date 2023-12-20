@@ -10,6 +10,7 @@ import Detail from "./pages/Detail.jsx";
 import CreateProduct from "./pages/CreateProduct.jsx";
 import MyProduct from "./pages/MyProduct.jsx";
 import Chat from "./pages/Chat.jsx";
+import EditPage from "./pages/EditPage.jsx";
 
 const auth = () => {
   const access_token = localStorage.access_token;
@@ -49,6 +50,11 @@ const router = createBrowserRouter([
       {
         path: "/myposts",
         element: <MyProduct />,
+        loader: auth,
+      },
+      {
+        path: "/myposts/:id",
+        element: <EditPage />,
         loader: auth,
       },
     ],

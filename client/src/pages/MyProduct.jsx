@@ -31,6 +31,38 @@ export default function MyProduct() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const deletePost = async (id) => {
+    try {
+      await axios({
+        method: "delete",
+        url: `http://localhost:3000/posts/${id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          fetchData();
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       {/* Headers */}
@@ -49,7 +81,7 @@ export default function MyProduct() {
       <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-20 md:grid-cols-2 gap-10 lg:grid-cols-2 xl:grid-cols-4 gap-6">
         {posts &&
           posts.map((post) => {
-            return <MyProductCard key={post.id} posts={post} />;
+            return <MyProductCard key={post.id} posts={post} deletePost={deletePost} />;
           })}
       </div>
     </>
