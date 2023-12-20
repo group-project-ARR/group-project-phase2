@@ -47,6 +47,10 @@ export default function CreateProduct() {
     });
   };
 
+  const handleDiscard = () => {
+    navigate("/");
+  };
+
   const handleSubmitForm = async (e) => {
     try {
       e.preventDefault();
@@ -198,13 +202,12 @@ export default function CreateProduct() {
               <button className="text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:ring-teal-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-2" type="submit">
                 Create
               </button>
+              <button className="text-white bg-slate-500 hover:bg-slate-700 focus:ring-4 focus:ring-slate-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button" onClick={handleDiscard}>
+                Discard
+              </button>
             </div>
           </form>
         </div>
-
-        <button className="text-white bg-slate-500 hover:bg-slate-700 focus:ring-4 focus:ring-slate-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="discard">
-          Discard
-        </button>
       </div>
     </>
   );
