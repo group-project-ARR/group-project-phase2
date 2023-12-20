@@ -11,6 +11,37 @@ class PostController {
         }
     }
 
+    static async getSellingProduct(req, res, next) {
+        try {
+            const post = await Post.findAll({
+                where: {
+                  UserId: {
+                    [Op.ne]: req.user.id
+                  }
+                }
+              })
+            res.status(200).json(post)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async getSellingProductById(req, res, next) {
+        try {
+            const post = await Post.findAll({
+                where: {
+                  UserId: {
+                    [Op.ne]: req.user.id
+                  }
+                }
+              })
+              const detailSelling = await post.findByPk(req.params.id)
+            res.status(200).json(detailSelling)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static async getPosts(req, res, next) {
         const { search } = req.query;
         const queryParams = {
