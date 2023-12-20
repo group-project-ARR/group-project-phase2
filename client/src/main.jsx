@@ -7,6 +7,7 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Detail from "./pages/Detail.jsx";
+import CreateProduct from "./pages/CreateProduct.jsx";
 
 const auth = () => {
   const access_token = localStorage.access_token;
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
       {
         path: "/detail/:id",
         element: <Detail />,
+        loader: auth,
+      },
+      {
+        path: "/create",
+        element: <CreateProduct />,
         loader: auth,
       },
     ],
