@@ -12,7 +12,7 @@ export default function CreateProduct() {
     try {
       const { data } = await axios({
         method: "get",
-        url: `http://localhost:3000/categories`,
+        url: `${import.meta.env.VITE_BASE_URL}/categories`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -56,7 +56,7 @@ export default function CreateProduct() {
       e.preventDefault();
       const { data } = await axios({
         method: "post",
-        url: `http://localhost:3000/posts`,
+        url: `${import.meta.env.VITE_BASE_URL}/posts`,
         data: inputForm,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),

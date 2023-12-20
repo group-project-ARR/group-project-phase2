@@ -26,7 +26,7 @@ export default function Login() {
     try {
       const { data } = await axios({
         method: "post",
-        url: "http://localhost:3000/login",
+        url: `${import.meta.env.VITE_BASE_URL}/login`,
         data: form,
       });
       console.log(data);

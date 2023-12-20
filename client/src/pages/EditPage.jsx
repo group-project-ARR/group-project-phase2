@@ -12,7 +12,7 @@ export default function EditPage() {
     try {
       const { data } = await axios({
         method: "get",
-        url: `http://localhost:3000/categories`,
+        url: `${import.meta.env.VITE_BASE_URL}/categories`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -49,7 +49,7 @@ export default function EditPage() {
       console.log("masuk");
       const { data } = await axios({
         method: "get",
-        url: `http://localhost:3000/posts/` + params.id,
+        url: `${import.meta.env.VITE_BASE_URL}/posts/` + params.id,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -93,7 +93,7 @@ export default function EditPage() {
       e.preventDefault();
       const { data } = await axios({
         method: "put",
-        url: `http://localhost:3000/posts/` + params.id,
+        url: `${import.meta.env.VITE_BASE_URL}/posts/` + params.id,
         data: inputForm,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),

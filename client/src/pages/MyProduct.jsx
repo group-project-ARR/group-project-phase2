@@ -11,7 +11,7 @@ export default function MyProduct() {
     try {
       const { data } = await axios({
         method: "get",
-        url: "http://localhost:3000/myposts",
+        url: `${import.meta.env.VITE_BASE_URL}/myposts`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -36,7 +36,7 @@ export default function MyProduct() {
     try {
       await axios({
         method: "delete",
-        url: `http://localhost:3000/posts/${id}`,
+        url: `${import.meta.env.VITE_BASE_URL}/posts/${id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
@@ -78,7 +78,7 @@ export default function MyProduct() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-20 md:grid-cols-2 gap-10 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-20 md:grid-cols-2 gap-10 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {posts &&
           posts.map((post) => {
             return <MyProductCard key={post.id} posts={post} deletePost={deletePost} />;

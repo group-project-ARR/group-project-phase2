@@ -13,7 +13,7 @@ export default function Detail() {
     try {
       const { data } = await axios({
         method: "get",
-        url: `http://localhost:3000/sell/` + params.id,
+        url: `${import.meta.env.VITE_BASE_URL}/sell/` + params.id,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
