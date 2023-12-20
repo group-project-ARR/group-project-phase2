@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken')
 
-const SECRET = `testdulubro`
+const JWT_SECRET = `testdulubro`
 
 const signToken = (payload) => {
-    return jwt.sign(payload, SECRET)
+    return jwt.sign(payload, JWT_SECRET)
 }
 
 const verifyToken = (token) => {
-    return jwt.verify(token, SECRET)
+    return jwt.verify(token, JWT_SECRET)
 }
 
-module.exports = {signToken, verifyToken}
+module.exports = { signToken, verifyToken }
