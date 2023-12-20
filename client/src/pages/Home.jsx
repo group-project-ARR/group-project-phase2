@@ -13,9 +13,9 @@ export default function Home() {
     try {
       let url;
       if (searchTerm) {
-        url = `http://localhost:3000/sell/?search=${searchTerm}`;
+        url = `${import.meta.env.VITE_BASE_URL}/sell/?search=${searchTerm}`;
       } else {
-        url = `http://localhost:3000/sell`;
+        url = `${import.meta.env.VITE_BASE_URL}/sell`;
       }
       const { data } = await axios({
         method: "get",
@@ -39,15 +39,15 @@ export default function Home() {
   useEffect(() => {
     fetchData();
 
-    socket.connect()
+    socket.connect();
     socket.on("hello", (arg) => {
-      console.log(arg + socket.id); 
+      console.log(arg + socket.id);
     });
 
     return () => {
-      socket.off("hello")
-      socket.disconnect()
-    }
+      socket.off("hello");
+      socket.disconnect();
+    };
   }, [searchTerm]);
 
   const handleChangeSearch = (e) => {
@@ -119,7 +119,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-20 md:grid-cols-2 gap-10 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-20 md:grid-cols-2 gap-10 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {posts &&
           posts.map((post) => {
             return <Card key={post.id} posts={post} />;

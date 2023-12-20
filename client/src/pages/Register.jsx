@@ -5,7 +5,7 @@ import axios from "axios";
 
 export default function Register() {
   const [form, setForm] = useState({
-    username: "", 
+    username: "",
     email: "",
     password: "",
   });
@@ -26,7 +26,7 @@ export default function Register() {
     try {
       const { data } = await axios({
         method: "post",
-        url: "http://localhost:3000/register",
+        url: `${import.meta.env.VITE_BASE_URL}/register`,
         data: form,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("access_token"),

@@ -52,7 +52,7 @@ export default function Chat() {
           {messages.map((isi, i) => (
             <div key={i} className={`flex ${isi.from === socket.auth.username ? "justify-end" : "justify-start"} items-center mb-2`}>
               <div className={`bg-${isi.from === socket.auth.username ? "blue-500" : "white"} text-${isi.from === socket.auth.username ? "white" : "black"} rounded-lg p-2 shadow mb-2 max-w-sm`}>
-                {isi.from !== socket.auth.username && <div className="font-medium">{isi.from}</div>}
+                {isi.from !== socket.auth.username && <div className="font-bold">{isi.from}</div>}
                 {isi.message}
               </div>
             </div>
@@ -62,13 +62,7 @@ export default function Chat() {
 
         <div className="bg-gray-100 px-4 py-2">
           <form className="flex items-center" onSubmit={handleSendChat}>
-            <input
-              className="w-full border rounded-full py-2 px-4 mr-2"
-              type="text"
-              placeholder="Type your message..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
+            <input className="w-full border rounded-full py-2 px-4 mr-2" type="text" placeholder="Type your message..." value={message} onChange={(e) => setMessage(e.target.value)} />
             <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-full">
               Send
             </button>
@@ -78,4 +72,3 @@ export default function Chat() {
     </>
   );
 }
-
