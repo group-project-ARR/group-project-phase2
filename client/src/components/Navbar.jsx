@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComments } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,8 +54,12 @@ const Navbar = () => {
         <a href="/create" className="block md:inline-block text-teal-900 hover:text-teal-500 px-3 py-3 border-b-2 border-teal-900 md:border-none">
           Selling
         </a>
+        <a href="/chats" className="block md:inline-block text-teal-900 hover:text-teal-500 px-3 py-3 border-b-2 border-teal-900 md:border-none">
+          <FontAwesomeIcon icon={faComments} />
+          Chat
+        </a>
       </div>
-      <a onClick={logoutHandler} href="#" className={`toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right border border-teal-900 text-teal-900 hover:text-white hover:bg-teal-900 md:rounded`}>
+      <a onClick={logoutHandler} href="#" className={`toggle hidden md:flex w-full md:w-auto px-4 py-2 mt-1 text-right border border-teal-900 text-teal-900 hover:text-white hover:bg-teal-900 md:rounded`}>
         Log out
       </a>
     </nav>
