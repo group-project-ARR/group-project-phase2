@@ -31,6 +31,7 @@ export default function Login() {
       });
       console.log(data);
       localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("username", data.username);
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",

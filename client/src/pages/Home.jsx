@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import socket from "../socket";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -37,6 +38,16 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
+
+    socket.connect()
+    socket.on("hello", (arg) => {
+      console.log(arg + socket.id); 
+    });
+
+    return () => {
+      socket.off("hello")
+      socket.disconnect()
+    }
   }, [searchTerm]);
 
   const handleChangeSearch = (e) => {
