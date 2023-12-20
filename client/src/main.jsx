@@ -8,6 +8,8 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Detail from "./pages/Detail.jsx";
 import CreateProduct from "./pages/CreateProduct.jsx";
+import MyProduct from "./pages/MyProduct.jsx";
+import Chat from "./pages/Chat.jsx";
 
 const auth = () => {
   const access_token = localStorage.access_token;
@@ -44,7 +46,17 @@ const router = createBrowserRouter([
         element: <CreateProduct />,
         loader: auth,
       },
+      {
+        path: "/myposts",
+        element: <MyProduct />,
+        loader: auth,
+      },
     ],
+  },
+  {
+    path: "/chats",
+    element: <Chat />,
+    loader: auth,
   },
   {
     path: "/login",

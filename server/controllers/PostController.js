@@ -32,6 +32,19 @@ class PostController {
         }
     }
 
+    static async getPostsByUserId(req, res, next) {
+        try {
+            const posts = await Post.findAll({
+                where: {
+                    UserId: req.user.id
+                }
+            });
+            res.status(200).json(posts);
+        } catch (error) {
+            next(error);
+        }
+    }
+
     static async getPost(req, res, next) {
         try {
             const post = await Post.findByPk(req.params.id, {
