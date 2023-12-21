@@ -16,20 +16,25 @@ const io = new Server(server, {
   }
 });
 
-
-
+const chatHistory = [];
 io.on('connection', (socket) => {
   console.log('a user connected', socket.id);
   console.log(`access_token`, socket.handshake.auth.access_token)
-  console.log(`username`, socket.handshake.auth.username)
+  console.log(`username`, socket.handshake.auth.username);
   socket.emit("hello", "masuk ga bang");
 
+
+  socket.emit("message:history", chatHistory);
+
   socket.on("message:new", (message) => {
-    io.emit("message:update", {
+    const newMessage = {
       from: socket.handshake.auth.username,
       message
-    })
-  })
+    };
+    chatHistory.push(newMessage);
+
+    io.emit("message:update", newMessage);
+  });
 });
 
 app.use(cors())

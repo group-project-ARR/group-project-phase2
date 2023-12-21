@@ -20,7 +20,12 @@ export default function Chat() {
         scrollToBottom();
       });
 
-      socket.emit("hello", "masuk ga bang");
+      socket.on("message:history", (chatHistory) => {
+        setMessages(chatHistory);
+        scrollToBottom();
+      });
+
+      socket.emit("hello", "masuk ga bang")
     };
 
     if (!socket.connected) {
@@ -28,8 +33,9 @@ export default function Chat() {
     }
 
     return () => {
-      socket.off("message:update");
-      socket.disconnect();
+      socket.off("message:update")
+      socket.off("message:history")
+      socket.disconnect()
     };
   }, []);
 
@@ -78,4 +84,3 @@ export default function Chat() {
     </>
   );
 }
-
