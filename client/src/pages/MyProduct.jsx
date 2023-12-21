@@ -3,33 +3,14 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Card from "../components/Card";
 import MyProductCard from "../components/MyProductCard";
-
+import { useDispatch, useSelector } from "react-redux"
+import { fetchData } from "../features/appSlice";
 export default function MyProduct() {
-  const [posts, setPosts] = useState([]);
-
-  const fetchData = async () => {
-    try {
-      const { data } = await axios({
-        method: "get",
-        url: `${import.meta.env.VITE_BASE_URL}/myposts`,
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-      });
-      console.log(data);
-      setPosts(data);
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Opps!",
-        text: error.response.data.message,
-      });
-      console.log(error);
-    }
-  };
+  const {data} = useSelector((state) => state.appReducer)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    fetchData();
+    dispatch(fetchData())
   }, []);
 
   const deletePost = async (id) => {
@@ -79,8 +60,8 @@ export default function MyProduct() {
         </div>
       </div>
       <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 gap-20 md:grid-cols-2 gap-10 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        {posts &&
-          posts.map((post) => {
+        {data &&
+          data.map((post) => {
             return <MyProductCard key={post.id} posts={post} deletePost={deletePost} />;
           })}
       </div>

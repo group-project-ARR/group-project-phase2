@@ -11,7 +11,8 @@ import CreateProduct from "./pages/CreateProduct.jsx";
 import MyProduct from "./pages/MyProduct.jsx";
 import Chat from "./pages/Chat.jsx";
 import EditPage from "./pages/EditPage.jsx";
-
+import { Provider } from 'react-redux'
+import store from "./store/index.js";
 const auth = () => {
   const access_token = localStorage.access_token;
   if (!access_token) {
@@ -78,6 +79,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Provider store={store}>
     <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
